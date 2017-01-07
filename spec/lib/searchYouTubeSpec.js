@@ -16,10 +16,13 @@ var hasSameShape = function(objectOne, objectTwo) {
 
   for (var key in objectOne) {
     if (!key in objectTwo) {
+      console.log("a");
       return false;
     }
 
     if (typeof objectOne[key] !== typeof objectTwo[key]) {
+      console.log(typeof objectOne[key]);
+      console.log(key);
       return false;
     }
 
@@ -77,6 +80,8 @@ describe('searchYouTube', function() {
     xhr.restore();
 
     searchYouTube(options, (data) => {
+      console.log(data);
+      console.log(window.exampleVideoData);
       expect(hasSameShape(data, window.exampleVideoData)).to.be.true;
       done();
     });

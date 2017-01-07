@@ -7,9 +7,16 @@ class App extends React.Component {
       videos: [],
       video: undefined
     };
+    var self = this;
+    props.searchYouTube({}, function () {
+      return self.state.videos;
+    });
+  } 
+  componentWillMount() {
+    console.log("component mount");
+    searchYouTube();
   }
   render () {
-
     return (
     <div>
       <Nav />
