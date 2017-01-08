@@ -1,9 +1,9 @@
 var searchYouTube = (options, callback) => {
   // TODO
   options = options || {};
-  // callback = callback || function () {
-  //   console.log(this.videos);
-  // };
+  callback = callback || function (data) {
+    return data;
+  };
   var searchQuery = {
     q: options.query === undefined ? '' : options.query,
     maxResults: options.max === undefined ? 5 : options.max,

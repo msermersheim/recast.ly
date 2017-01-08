@@ -7,21 +7,31 @@ class App extends React.Component {
       videos: [],
       video: undefined
     };
-    var self = this;
-    props.searchYouTube({}, function () {
-      return self.state.videos;
-    });
+    // props.searchYouTube({}, function () {
+    //   return self.state.videos;
+    // });
   } 
-  componentWillMount() {
-    console.log("component mount");
-    searchYouTube();
+  componentWillMount(props) {
+    var options = {
+      query: 'react',
+      max: 5,
+      key: YOUTUBE_API_KEY
+    };
+    var self = this;
+    searchYouTube(options, function(data) {
+      self.setState({
+        videos: data,
+        video: data[0]
+      });
+    });
   }
   render () {
+    console.log(this.state.videos);
     return (
     <div>
       <Nav />
       <div className="col-md-7">
-        <VideoPlayer video={this.state.video}/>
+        <VideoPlayer video={this.state.videos[0]}/>
       </div>
       <div className="col-md-5">
         <VideoList videos={this.state.videos}/>
